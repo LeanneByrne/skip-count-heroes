@@ -33,7 +33,7 @@ export default function App() {
   const [instrument, setInstrument] = useState("marimba");
   const [melodyStyle, setMelodyStyle] = useState("melody");
   const [voiceOn, setVoiceOn] = useState(false);
-  const [voiceBaseUrl, setVoiceBaseUrl] = useState("");
+  const [voiceBaseUrl, setVoiceBaseUrl] = useState("/audio");
   const [voiceLoading, setVoiceLoading] = useState(false);
   const [voiceError, setVoiceError] = useState("");
   const [showVoiceSettings, setShowVoiceSettings] = useState(false);
@@ -863,30 +863,6 @@ export default function App() {
                 <input type="checkbox" checked={drumsOn} onChange={(e) => setDrumsOn(e.target.checked)} className="ml-1 w-4 h-4" />
               </label>
 
-              <div className="border-2 border-purple-200 bg-purple-50 rounded-2xl overflow-hidden">
-                <button onClick={() => setShowVoiceSettings(!showVoiceSettings)}
-                  className="w-full flex items-center justify-between px-4 py-3 font-bold text-purple-700 hover:bg-purple-100 transition-colors">
-                  <span className="flex items-center gap-2">🎙️ AI Voice {voiceOn && voiceBaseUrl && <span className="text-xs bg-green-200 text-green-800 px-2 py-0.5 rounded-full">ON</span>}</span>
-                  <span className="text-sm">{showVoiceSettings ? "▼" : "▶"}</span>
-                </button>
-                {showVoiceSettings && (
-                  <div className="px-4 pb-4 space-y-3">
-                    <label className="flex items-center gap-2 cursor-pointer font-bold text-purple-700 text-sm">
-                      <input type="checkbox" checked={voiceOn} onChange={(e) => setVoiceOn(e.target.checked)} className="w-4 h-4" />
-                      Play voice clips with the music
-                    </label>
-                    <div>
-                      <label className="block text-xs font-bold text-purple-700 uppercase mb-1">Voice Files URL</label>
-                      <input type="text" value={voiceBaseUrl} onChange={(e) => setVoiceBaseUrl(e.target.value)}
-                        placeholder="https://your-site.netlify.app/audio"
-                        className="w-full px-3 py-2 rounded-xl border-2 border-purple-200 font-mono text-xs focus:outline-none focus:border-purple-400" />
-                      <p className="text-xs text-purple-600 mt-1 italic">The folder containing 2.mp3, 4.mp3, etc.</p>
-                    </div>
-                    {voiceLoading && (<div className="text-sm text-purple-700 flex items-center gap-2"><div className="w-3 h-3 rounded-full bg-purple-400 animate-pulse"></div>Loading voice clips...</div>)}
-                    {voiceError && (<div className="text-xs text-red-700 bg-red-50 border border-red-200 rounded-lg p-2">⚠️ {voiceError}</div>)}
-                  </div>
-                )}
-              </div>
             </div>
 
             <div className="mt-5 text-center text-slate-500 text-sm italic">🎤 Watch the bouncing ball — sing the big number when it lands!</div>
